@@ -1,0 +1,3 @@
+rootProject.name = 'cabinet'
+
+include ':app'
