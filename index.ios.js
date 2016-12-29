@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   Image,
+  ListView,
   StyleSheet,
   Text,
   View
@@ -17,11 +18,14 @@ var MOCKED_MOVIES_DATA = [
   {title: 'Title', year: '2015', posters: {thumbnail: 'https://i.imgur.com/UePbdph.jpg'}},
 ];
 
-export default class cabinet extends Component {
+export default class snapdoc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: null,
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 != row2,
+      }),
+      loaded: false,
     };
   };
 
@@ -33,21 +37,26 @@ export default class cabinet extends Component {
     fetch(REQUEST_URL)
       .then((response) => response.json())
       .then((responseData) => {
-        console.log(responseData);
         this.setState({
-          movies: responseData.movies,
+          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+          loaded: true,
         });
       })
       .done();
   };
 
   render() {
-    if (!this.state.movies) {
+    if (!this.state.loaded) {
       return this.renderLoadingView();
     }
 
-    var movie = this.state.movies[0];
-    return this.renderMovie(movie);
+    return (
+      <ListView
+        dataSource={this.state.dataSource}
+        renderRow={this.renderMovie}
+        style={styles.listView}
+      />
+    );
   }
 
   renderLoadingView() {
@@ -84,6 +93,10 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  listView: {
+    paddingTop: 20,
+    backgroundColor: '#F5FCFF',
+  },
   rightContainer: {
     flex: 1,
   },
@@ -101,4 +114,4 @@ var styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('cabinet', () => cabinet);
+AppRegistry.registerComponent('snapdoc', () => snapdoc);

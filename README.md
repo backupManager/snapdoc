@@ -1,4 +1,4 @@
-Cabinet :open_file_folder:
+Snapdoc :open_file_folder:
 ==========================
 
 React Native OCR document cloud storage service
@@ -12,4 +12,4 @@ $ react-native run-ios
 $ react-native run-android
 ```
 
-To enable the React Native Debugger tab in Google Chrome, use the shortcut <kbd>⌘</kbd>+<kbd>D</kbd> in the iOS emulator and <kbd>⌘</kbd>+<kbd>M</kbd> in the Android emulator to bring up the hardware menus and enable remote JS debugging.
+To enable the React Native Debugger tab in Google Chrome, use the shortcut <kbd>Command ⌘</kbd>+<kbd>D</kbd> in the iOS emulator and <kbd>Command ⌘</kbd>+<kbd>M</kbd> in the Android emulator to bring up the hardware menus and enable remote JS debugging.
