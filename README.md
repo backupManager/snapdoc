@@ -1,5 +1,5 @@
-Snapdoc :open_file_folder:
-==========================
+Snapdoc :camera: :page_facing_up:
+=================================
 
 React Native OCR document cloud storage service
 
