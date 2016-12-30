@@ -8,17 +8,9 @@ import {
   View
 } from 'react-native';
 
-/**
- * For quota reasons we replaced the Rotten Tomatoes' API with a sample data of
- * their very own API that lives in React Native's Github repo.
- */
-var REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+var REQUEST_URL = "";
 
-var MOCKED_MOVIES_DATA = [
-  {title: 'Title', year: '2015', posters: {thumbnail: 'https://i.imgur.com/UePbdph.jpg'}},
-];
-
-export default class FileList extends Component {
+export default class CategoryList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +30,7 @@ export default class FileList extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+          dataSource: this.state.dataSource.cloneWithRows(responseData.categories),
           loaded: true,
         });
       })
@@ -63,7 +55,7 @@ export default class FileList extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          Loading movies...
+          Loading categories...
         </Text>
       </View>
     );
@@ -72,13 +64,13 @@ export default class FileList extends Component {
   renderMovie(movie) {
     return (
       <View style={styles.container}>
-        <Image
-          source={{uri: movie.posters.thumbnail}}
-          style={styles.thumbnail}
-        />
+        // <Image
+        //   source={{uri: movie.posters.thumbnail}}
+        //   style={styles.thumbnail}
+        // />
         <View style={styles.rightContainer}>
-          <Text style={styles.title}>{movie.title}</Text>
-          <Text style={styles.year}>{movie.year}</Text>
+          // <Text style={styles.title}>{movie.title}</Text>
+          // <Text style={styles.year}>{movie.year}</Text>
         </View>
       </View>
     );
@@ -114,4 +106,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = FileList;
+module.exports = CategoryList;

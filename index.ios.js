@@ -6,7 +6,7 @@ import {
   Text,
   View
 } from 'react-native';
-import FileList from './views/fileList.ios.js';
+import CategoryList from './views/CategoryList.ios.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SnapDoc extends Component {
@@ -18,7 +18,16 @@ export default class SnapDoc extends Component {
   };
 
   _renderContent() {
-    return (<FileList></FileList>);
+    switch (this.state.selectedTab) {
+      case "filesTab":
+        return (<CategoryList></CategoryList>);
+      case "cameraTab":
+        return <View></View>;
+      case "settingsTab":
+        return <View></View>;
+      default:
+        return <View></View>;
+    }
   };
 
   render() {
@@ -30,10 +39,10 @@ export default class SnapDoc extends Component {
           <Icon.TabBarItemIOS
             title="Files"
             iconName="folder"
-            selected={this.state.selectedTab === 'filesTab'}
+            selected={this.state.selectedTab === "filesTab"}
             onPress={() => {
               this.setState({
-                selectedTab: 'filesTab',
+                selectedTab: "filesTab",
               });
             }}>
             {this._renderContent()}
@@ -42,10 +51,10 @@ export default class SnapDoc extends Component {
             title="Camera"
             iconName="photo-camera"
             badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-            selected={this.state.selectedTab === 'cameraTab'}
+            selected={this.state.selectedTab === "cameraTab"}
             onPress={() => {
               this.setState({
-                selectedTab: 'cameraTab',
+                selectedTab: "cameraTab",
                 notifCount: this.state.notifCount + 1,
               });
             }}>
@@ -57,7 +66,7 @@ export default class SnapDoc extends Component {
             selected={this.state.selectedTab === 'settingsTab'}
             onPress={() => {
               this.setState({
-                selectedTab: 'settingsTab',
+                selectedTab: "settingsTab",
                 presses: this.state.presses + 1
               });
             }}>
