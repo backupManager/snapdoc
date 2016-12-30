@@ -1,7 +1,7 @@
 Snapdoc :camera: :page_facing_up:
 =================================
 
-React Native OCR document cloud storage service
+A React Native OCR document cloud storage service with [Snapserver](https://github.com/rosendin/snapserver). 
 
 ## Quickstart
 
