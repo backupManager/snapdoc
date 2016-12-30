@@ -41,9 +41,9 @@ export default class SnapDoc extends Component {
       <View style={styles.container}>
         <TabBarIOS
           tintColor="white"
-          barTintColor="darkslateblue">
+          barTintColor="#1abc9c">
           <TabBarIOS.Item
-            title="Blue Tab"
+            title="Docs"
             icon={{uri: base64Icon, scale: 3}}
             selected={this.state.selectedTab === 'blueTab'}
             onPress={() => {
@@ -67,7 +67,7 @@ export default class SnapDoc extends Component {
           </TabBarIOS.Item>
           <TabBarIOS.Item
             icon={{uri: base64Icon, scale: 3}}
-            title="More"
+            title="Settings"
             selected={this.state.selectedTab === 'greenTab'}
             onPress={() => {
               this.setState({
@@ -86,9 +86,6 @@ export default class SnapDoc extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   tabContent: {
