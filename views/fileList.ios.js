@@ -18,7 +18,7 @@ var MOCKED_MOVIES_DATA = [
   {title: 'Title', year: '2015', posters: {thumbnail: 'https://i.imgur.com/UePbdph.jpg'}},
 ];
 
-export default class Cabinet extends Component {
+export default class FileList extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,4 +114,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = Cabinet;
+module.exports = FileList;

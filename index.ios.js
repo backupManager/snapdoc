@@ -6,33 +6,19 @@ import {
   Text,
   View
 } from 'react-native';
-import Cabinet from './views/cabinet.ios.js';
+import FileList from './views/fileList.ios.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SnapDoc extends Component {
-  statics: {
-    title: '<TabBarIOS>',
-    description: 'Tab-based navigation.',
-  };
-
-  displayName: 'TabBarExample';
-
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'redTab',
-      notifCount: 0,
-      presses: 0,
+      selectedTab: 'cameraTab'
     };
   };
 
-  _renderContent(color: string, pageText: string, num?: number) {
-    return (
-      <View style={[styles.tabContent, {backgroundColor: color}]}>
-        <Text style={styles.tabText}>{pageText}</Text>
-        <Text style={styles.tabText}>{num} re-renders of the {pageText}</Text>
-      </View>
-    );
+  _renderContent() {
+    return (<FileList></FileList>);
   };
 
   render() {
@@ -44,38 +30,38 @@ export default class SnapDoc extends Component {
           <Icon.TabBarItemIOS
             title="Files"
             iconName="folder"
-            selected={this.state.selectedTab === 'blueTab'}
+            selected={this.state.selectedTab === 'filesTab'}
             onPress={() => {
               this.setState({
-                selectedTab: 'blueTab',
+                selectedTab: 'filesTab',
               });
             }}>
-            {this._renderContent('#414A8C', 'Blue Tab')}
+            {this._renderContent()}
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             title="Camera"
             iconName="photo-camera"
             badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-            selected={this.state.selectedTab === 'redTab'}
+            selected={this.state.selectedTab === 'cameraTab'}
             onPress={() => {
               this.setState({
-                selectedTab: 'redTab',
+                selectedTab: 'cameraTab',
                 notifCount: this.state.notifCount + 1,
               });
             }}>
-            {this._renderContent('#783E33', 'Red Tab', this.state.notifCount)}
+            {this._renderContent()}
           </Icon.TabBarItemIOS>
           <Icon.TabBarItemIOS
             title="Settings"
             iconName="settings"
-            selected={this.state.selectedTab === 'greenTab'}
+            selected={this.state.selectedTab === 'settingsTab'}
             onPress={() => {
               this.setState({
-                selectedTab: 'greenTab',
+                selectedTab: 'settingsTab',
                 presses: this.state.presses + 1
               });
             }}>
-            {this._renderContent('#21551C', 'Green Tab', this.state.presses)}
+            {this._renderContent()}
           </Icon.TabBarItemIOS>
         </TabBarIOS>
       </View>
