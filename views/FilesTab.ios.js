@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   Image,
   ListView,
   StyleSheet,
@@ -10,7 +9,7 @@ import {
 
 var REQUEST_URL = "";
 
-export default class CategoryList extends Component {
+export default class FilesTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,15 +25,15 @@ export default class CategoryList extends Component {
   };
 
   fetchData() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.categories),
-          loaded: true,
-        });
-      })
-      .done();
+    // fetch(REQUEST_URL)
+    //   .then((response) => response.json())
+    //   .then((responseData) => {
+    //     this.setState({
+    //       dataSource: this.state.dataSource.cloneWithRows(responseData.categories),
+    //       loaded: true,
+    //     });
+    //   })
+    //   .done();
   };
 
   render() {
@@ -61,18 +60,9 @@ export default class CategoryList extends Component {
     );
   }
 
-  renderMovie(movie) {
+  renderMovie() {
     return (
-      <View style={styles.container}>
-        // <Image
-        //   source={{uri: movie.posters.thumbnail}}
-        //   style={styles.thumbnail}
-        // />
-        <View style={styles.rightContainer}>
-          // <Text style={styles.title}>{movie.title}</Text>
-          // <Text style={styles.year}>{movie.year}</Text>
-        </View>
-      </View>
+      <View style={styles.container}></View>
     );
   }
 }
@@ -106,4 +96,4 @@ var styles = StyleSheet.create({
   },
 });
 
-module.exports = CategoryList;
+module.exports = FilesTab;

@@ -6,7 +6,8 @@ import {
   Text,
   View
 } from 'react-native';
-import CategoryList from './views/CategoryList.ios.js';
+import CameraTab from './views/CameraTab.ios.js';
+import FilesTab from './views/FilesTab.ios.js';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SnapDoc extends Component {
@@ -20,9 +21,9 @@ export default class SnapDoc extends Component {
   _renderContent() {
     switch (this.state.selectedTab) {
       case "filesTab":
-        return (<CategoryList></CategoryList>);
+        return (<FilesTab></FilesTab>);
       case "cameraTab":
-        return <View></View>;
+        return <CameraTab></CameraTab>;
       case "settingsTab":
         return <View></View>;
       default:

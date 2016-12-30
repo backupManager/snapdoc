@@ -24,6 +24,8 @@
     <string>1</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>Allow us to scan documents and capture images.</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>
