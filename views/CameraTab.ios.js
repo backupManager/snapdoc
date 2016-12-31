@@ -40,7 +40,31 @@ export default class CameraTab extends Component {
   _takePicture() {
     this._camera.capture()
       .then((data) => {
-        console.log(data)
+        var doc = {
+          uri: data.path,
+          type: 'image/jpeg',
+          name: 'document.jpg',
+        };
+
+        var body = new FormData();
+
+        body.append('doc', doc);
+
+        fetch('http://localhost:3000/files', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: body
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
       })
       .catch((err) => {
         console.error(err)
