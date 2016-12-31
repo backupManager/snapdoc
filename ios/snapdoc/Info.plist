@@ -26,6 +26,8 @@
     <true/>
     <key>NSCameraUsageDescription</key>
     <string>Allow us to scan documents and capture images.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allows us to access captured images from your photo library.</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>

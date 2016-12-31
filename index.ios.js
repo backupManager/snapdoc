@@ -2,96 +2,83 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   TabBarIOS,
+  ScrollView,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 import CameraTab from './views/CameraTab.ios.js';
 import FilesTab from './views/FilesTab.ios.js';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class SnapDoc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'cameraTab'
+      selectedTab: ''
     };
   };
 
   _renderContent() {
     switch (this.state.selectedTab) {
       case "filesTab":
-        return (<FilesTab></FilesTab>);
+        return <FilesTab style={styles.tabContent}></FilesTab>;
       case "cameraTab":
-        return <CameraTab></CameraTab>;
+        return <CameraTab style={styles.tabContent}></CameraTab>;
       case "settingsTab":
-        return <View></View>;
+        return <View style={styles.tabContent}></View>;
       default:
-        return <View></View>;
+        return <View style={styles.tabContent}></View>;
     }
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <TabBarIOS
-          tintColor="#3498db"
-          barTintColor="#ecf0f1">
-          <Icon.TabBarItemIOS
-            title="Files"
-            iconName="folder"
-            selected={this.state.selectedTab === "filesTab"}
-            onPress={() => {
-              this.setState({
-                selectedTab: "filesTab",
-              });
-            }}>
-            {this._renderContent()}
-          </Icon.TabBarItemIOS>
-          <Icon.TabBarItemIOS
-            title="Camera"
-            iconName="photo-camera"
-            badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
-            selected={this.state.selectedTab === "cameraTab"}
-            onPress={() => {
-              this.setState({
-                selectedTab: "cameraTab",
-                notifCount: this.state.notifCount + 1,
-              });
-            }}>
-            {this._renderContent()}
-          </Icon.TabBarItemIOS>
-          <Icon.TabBarItemIOS
-            title="Settings"
-            iconName="settings"
-            selected={this.state.selectedTab === 'settingsTab'}
-            onPress={() => {
-              this.setState({
-                selectedTab: "settingsTab",
-                presses: this.state.presses + 1
-              });
-            }}>
-            {this._renderContent()}
-          </Icon.TabBarItemIOS>
-        </TabBarIOS>
-      </View>
+      <TabBarIOS
+        tintColor="#3498db"
+        barTintColor="#ecf0f1">
+        <Icon.TabBarItemIOS
+          title="Files"
+          iconName="ios-folder"
+          selected={this.state.selectedTab === "filesTab"}
+          onPress={() => {
+            this.setState({
+              selectedTab: "filesTab",
+            });
+          }}>
+          {this._renderContent()}
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
+          title="Camera"
+          iconName="ios-camera"
+          badge={this.state.notifCount > 0 ? this.state.notifCount : undefined}
+          selected={this.state.selectedTab === "cameraTab"}
+          onPress={() => {
+            this.setState({
+              selectedTab: "cameraTab"
+            });
+          }}>
+          {this._renderContent()}
+        </Icon.TabBarItemIOS>
+        <Icon.TabBarItemIOS
+          title="Settings"
+          iconName="ios-settings"
+          selected={this.state.selectedTab === 'settingsTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: "settingsTab",
+              presses: this.state.presses + 1
+            });
+          }}>
+          {this._renderContent()}
+        </Icon.TabBarItemIOS>
+      </TabBarIOS>
     );
   }
 }
 
 var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F5FCFF',
-  },
-  tabContent: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  tabText: {
-    color: 'white',
-    margin: 50,
-  },
+  tabContent: {},
 });
 
 AppRegistry.registerComponent('snapdoc', () => SnapDoc);
