@@ -23,15 +23,16 @@ export default class CameraTab extends Component {
             this._camera = cam;
           }}
           style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}>
-        </Camera>
-        <View style={styles.buttonContainer}>
+          aspect={Camera.constants.Aspect.fill}
+          captureTarget={Camera.constants.CaptureTarget.disk}>
           <TouchableHighlight
+              activeOpacity={1}
+              underlayColor={'transparent'}
               style={styles.cameraButton}
               onPress={this._takePicture.bind(this)}>
               <Icon name="ios-qr-scanner" size={55} color="#95a5a6" />
           </TouchableHighlight>
-        </View>
+        </Camera>
       </View>
     );
   }
@@ -48,24 +49,19 @@ export default class CameraTab extends Component {
 }
 
 var styles = StyleSheet.create({
-  buttonContainer: {
-    flexBasis: 80,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginBottom: 50,
-    backgroundColor: 'black',
-  },
   cameraButton: {
     flex: 0,
     flexDirection: 'row',
+    marginBottom: 60,
   },
   container: {
     flex: 1,
   },
   preview: {
     flex: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-end'
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-around'
   },
 });
 
