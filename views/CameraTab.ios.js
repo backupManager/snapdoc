@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/Ionicons';
+import RNFetchBlob from 'react-native-fetch-blob';
 
 export default class CameraTab extends Component {
   constructor(props) {
@@ -40,25 +41,25 @@ export default class CameraTab extends Component {
   _takePicture() {
     this._camera.capture()
       .then((data) => {
-        var doc = {
-          uri: data.path,
+        var image = {
+          name: 'image',
           type: 'image/jpeg',
-          name: 'document.jpg',
+          filename: 'document.jpg',
+          data: RNFetchBlob.wrap(data.path)
         };
 
         var body = new FormData();
 
-        body.append('doc', doc);
+        body.append('image', image);
 
-        fetch('http://localhost:3000/files', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: body
+        RNFetchBlob.fetch('POST', 'http://localhost:3000/files', {
+          'Accept': 'application/json',
+          'Content-Type': 'application/octet-stream'
+        }, [image])
+        .then((response) => {
+          console.log(response);
+          return response.json()
         })
-        .then((response) => response.json())
         .then((data) => {
           console.log(data);
         })
