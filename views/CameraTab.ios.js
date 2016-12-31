@@ -9,11 +9,14 @@ import {
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/Ionicons';
 import RNFetchBlob from 'react-native-fetch-blob';
+import Spinner from 'react-native-spinkit';
 
 export default class CameraTab extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      captureInProgress: false,
+    };
   };
 
   render() {
@@ -26,8 +29,14 @@ export default class CameraTab extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           captureTarget={Camera.constants.CaptureTarget.disk}>
+          <View style={styles.container}>
+            <Spinner style={styles.spinner}
+              isVisible={this.state.captureInProgress}
+              size={100}
+              type='FadingCircleAlt' color='#ffffff'/>
+          </View>
           <TouchableHighlight
-              activeOpacity={1}
+              activeOpacity={0}
               underlayColor={'transparent'}
               style={styles.cameraButton}
               onPress={this._takePicture.bind(this)}>
@@ -39,6 +48,7 @@ export default class CameraTab extends Component {
   }
 
   _takePicture() {
+    this.setState({ captureInProgress: true });
     this._camera.capture()
       .then((data) => {
         var image = {
@@ -62,6 +72,7 @@ export default class CameraTab extends Component {
         })
         .then((data) => {
           console.log(data);
+          this.setState({ captureInProgress: false });
         })
         .catch((error) => {
           console.error(error);
@@ -84,9 +95,13 @@ var styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
+    flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'space-around'
+  },
+  spinner: {
+    flex: 1,
+    marginTop: 200
   },
 });
 
