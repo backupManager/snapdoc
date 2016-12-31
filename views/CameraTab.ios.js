@@ -52,7 +52,7 @@ export default class CameraTab extends Component {
 
         body.append('image', image);
 
-        RNFetchBlob.fetch('POST', 'http://localhost:3000/files', {
+        RNFetchBlob.fetch('POST', 'http://snapdoc.io/files', {
           'Accept': 'application/json',
           'Content-Type': 'application/octet-stream'
         }, [image])
