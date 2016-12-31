@@ -33,7 +33,7 @@ export default class CameraTab extends Component {
             <Spinner style={styles.spinner}
               isVisible={this.state.captureInProgress}
               size={100}
-              type='FadingCircleAlt' color='#ffffff'/>
+              type='FadingCircleAlt' color='#2c3e50'/>
           </View>
           <TouchableHighlight
               activeOpacity={0}
@@ -62,7 +62,7 @@ export default class CameraTab extends Component {
 
         body.append('image', image);
 
-        RNFetchBlob.fetch('POST', 'http://www.snapdoc.io/files', {
+        RNFetchBlob.fetch('POST', 'http://snapdoc.io/files', {
           'Accept': 'application/json',
           'Content-Type': 'application/octet-stream'
         }, [image])

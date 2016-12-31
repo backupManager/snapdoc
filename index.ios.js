@@ -15,7 +15,7 @@ export default class SnapDoc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: ''
+      selectedTab: 'filesTab'
     };
   };
 
