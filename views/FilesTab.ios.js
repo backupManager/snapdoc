@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-var REQUEST_URL = "http://snapdoc.io/files";
+var REQUEST_URL = "http://www.snapdoc.io/files";
 
 export default class FilesTab extends Component {
   constructor(props) {
@@ -48,6 +48,7 @@ export default class FilesTab extends Component {
         dataSource={this.state.dataSource}
         renderRow={this.renderFile}
         style={styles.listView}
+        enableEmptySections={true}
       />
     );
   }

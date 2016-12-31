@@ -62,7 +62,7 @@ export default class CameraTab extends Component {
 
         body.append('image', image);
 
-        RNFetchBlob.fetch('POST', 'http://snapdoc.io/files', {
+        RNFetchBlob.fetch('POST', 'http://www.snapdoc.io/files', {
           'Accept': 'application/json',
           'Content-Type': 'application/octet-stream'
         }, [image])
@@ -76,10 +76,12 @@ export default class CameraTab extends Component {
         })
         .catch((error) => {
           console.error(error);
+          this.setState({ captureInProgress: false });
         });
       })
       .catch((err) => {
         console.error(err)
+        this.setState({ captureInProgress: false });
       });
   }
 }
