@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -106,5 +106,7 @@ var styles = StyleSheet.create({
     marginTop: 200
   },
 });
+
+CameraTab.PropTypes = {};
 
 module.exports = CameraTab;

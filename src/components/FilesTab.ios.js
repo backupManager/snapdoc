@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Image,
   ListView,
@@ -99,5 +99,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+FilesTab.propTypes = {};
 
 module.exports = FilesTab;
