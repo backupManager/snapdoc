@@ -35,7 +35,9 @@ export default class Snapdoc extends Component {
           }}>
           <CameraTab
             captureInProgress={this.props.captureInProgress}
-            onTakePicture={this.props.onTakePicture}>
+            onTakePicture={this.props.onTakePicture}
+            setModalVisible={this.props.setModalVisible}
+            modalVisible={this.props.modalVisible}>
           </CameraTab>
         </Icon.TabBarItemIOS>
         <Icon.TabBarItemIOS

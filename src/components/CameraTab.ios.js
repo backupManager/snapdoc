@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  Dimensions,
   StyleSheet,
   Text,
   TouchableHighlight,
   View
 } from 'react-native';
 import Camera from 'react-native-camera';
+import DocumentModal from './DocumentModal';
 import Icon from 'react-native-vector-icons/Ionicons';
 import RNFetchBlob from 'react-native-fetch-blob';
 import Spinner from 'react-native-spinkit';
@@ -15,21 +15,25 @@ export default class CameraTab extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Camera
-          ref={(cam) => {
-            this._camera = cam;
-          }}
-          style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}
-          captureTarget={Camera.constants.CaptureTarget.disk}>
-          <View style={styles.container}>
-            <Spinner style={styles.spinner}
-              isVisible={this.props.captureInProgress}
-              size={100}
-              type='FadingCircleAlt' color='#2c3e50'/>
-          </View>
-          { this._renderCameraButton() }
-        </Camera>
+        <DocumentModal
+          modalVisible={this.props.modalVisible}
+          setModalVisible={this.props.setModalVisible}>
+        </DocumentModal>
+          <Camera
+            ref={(cam) => {
+              this._camera = cam;
+            }}
+            style={styles.preview}
+            aspect={Camera.constants.Aspect.fill}
+            captureTarget={Camera.constants.CaptureTarget.disk}>
+            <View style={styles.container}>
+              <Spinner style={styles.spinner}
+                isVisible={this.props.captureInProgress}
+                size={100}
+                type='FadingCircleAlt' color='#2c3e50'/>
+            </View>
+            { this._renderCameraButton() }
+          </Camera>
       </View>
     );
   }
@@ -73,6 +77,7 @@ export default class CameraTab extends Component {
         .then((data) => {
           console.log(data);
           this.props.onTakePicture(false);
+          this.props.setModalVisible(true);
         })
         .catch((error) => {
           console.error(error);
