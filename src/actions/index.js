@@ -5,9 +5,9 @@ export const setSelectedTab = (tab) => {
   };
 };
 
-export const startCameraAnimation = (captureInProgress) => {
+export const toggleCameraAnimation = (captureInProgress) => {
   return {
-      type: 'START_CAMERA_ANIMATION',
+      type: 'TOGGLE_CAMERA_ANIMATION',
       captureInProgress
   };
 };

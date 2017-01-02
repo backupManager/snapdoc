@@ -12,13 +12,6 @@ import RNFetchBlob from 'react-native-fetch-blob';
 import Spinner from 'react-native-spinkit';
 
 export default class CameraTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      captureInProgress: false,
-    };
-  };
-
   render() {
     return (
       <View style={styles.container}>
@@ -31,7 +24,7 @@ export default class CameraTab extends Component {
           captureTarget={Camera.constants.CaptureTarget.disk}>
           <View style={styles.container}>
             <Spinner style={styles.spinner}
-              isVisible={this.state.captureInProgress}
+              isVisible={this.props.captureInProgress}
               size={100}
               type='FadingCircleAlt' color='#2c3e50'/>
           </View>
@@ -48,7 +41,7 @@ export default class CameraTab extends Component {
   }
 
   _takePicture() {
-    this.setState({ captureInProgress: true });
+    this.props.onTakePicture(true);
     this._camera.capture()
       .then((data) => {
         var image = {
@@ -72,16 +65,16 @@ export default class CameraTab extends Component {
         })
         .then((data) => {
           console.log(data);
-          this.setState({ captureInProgress: false });
+          this.props.onTakePicture(false);
         })
         .catch((error) => {
           console.error(error);
-          this.setState({ captureInProgress: false });
+          this.props.onTakePicture(false);
         });
       })
       .catch((err) => {
         console.error(err)
-        this.setState({ captureInProgress: false });
+        this.props.onTakePicture(false);
       });
   }
 }

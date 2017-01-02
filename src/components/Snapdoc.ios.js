@@ -33,7 +33,10 @@ export default class Snapdoc extends Component {
           onPress={() => {
             this.props.onNewTabSelected("cameraTab")
           }}>
-          <CameraTab></CameraTab>
+          <CameraTab
+            captureInProgress={this.props.captureInProgress}
+            onTakePicture={this.props.onTakePicture}>
+          </CameraTab>
         </Icon.TabBarItemIOS>
         <Icon.TabBarItemIOS
           title="Settings"
