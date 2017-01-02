@@ -1,7 +1,7 @@
 Snapdoc :camera: :page_facing_up:
 =================================
 
-A React Native OCR document cloud storage service with [Snapserver](https://github.com/rosendin/snapserver). 
+A React Native OCR document cloud storage service with [Snapserver](https://github.com/rosendin/snapserver).
 
 ## Quickstart
 
@@ -13,7 +13,3 @@ $ react-native run-android
 ```
 
 To enable the React Native Debugger tab in Google Chrome, use the shortcut <kbd>Command ⌘</kbd>+<kbd>D</kbd> in the iOS emulator and <kbd>Command ⌘</kbd>+<kbd>M</kbd> in the Android emulator to bring up the hardware menus and enable remote JS debugging.
-
-## Resources
-
-[Tracking.js](https://trackingjs.com/docs.html) will help crop documents.
