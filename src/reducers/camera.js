@@ -1,0 +1,10 @@
+const cameraReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'START_CAMERA_ANIMATION':
+      return { captureInProgress: action.captureInProgress };
+    default:
+      return { captureInProgress: false };
+  };
+};
+
+export default cameraReducer;

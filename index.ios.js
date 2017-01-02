@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 
-import rootReducer from './src/reducers/index';
 import Snapdoc from './src/containers/SnapdocContainer';
+import configureStore from './src/store/configureStore';
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
-);
+const store = configureStore()
 
 export default class App extends Component {
   render() {

@@ -4,3 +4,10 @@ export const setSelectedTab = (tab) => {
     tab
   };
 };
+
+export const startCameraAnimation = (captureInProgress) => {
+  return {
+      type: 'START_CAMERA_ANIMATION',
+      captureInProgress
+  };
+};

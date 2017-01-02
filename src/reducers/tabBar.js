@@ -1,6 +1,4 @@
-import { combineReducers } from 'redux';
-
-const tabBar = (state = {}, action) => {
+const tabBarReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_SELECTED_TAB':
       return { selectedTab: action.tab };
@@ -9,4 +7,4 @@ const tabBar = (state = {}, action) => {
   };
 };
 
-export default tabBar;
+export default tabBarReducer;
