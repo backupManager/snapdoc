@@ -28,16 +28,24 @@ export default class CameraTab extends Component {
               size={100}
               type='FadingCircleAlt' color='#2c3e50'/>
           </View>
-          <TouchableHighlight
-              activeOpacity={0}
-              underlayColor={'transparent'}
-              style={styles.cameraButton}
-              onPress={this._takePicture.bind(this)}>
-              <Icon name="ios-qr-scanner" size={55} color="#95a5a6" />
-          </TouchableHighlight>
+          { this._renderCameraButton() }
         </Camera>
       </View>
     );
+  }
+
+  _renderCameraButton() {
+    if (!this.props.captureInProgress) {
+      return (
+        <TouchableHighlight
+            activeOpacity={0}
+            underlayColor={'transparent'}
+            style={styles.cameraButton}
+            onPress={() => { this._takePicture() }}>
+            <Icon name="ios-qr-scanner" size={55} color="#95a5a6" />
+        </TouchableHighlight>
+      );
+    }
   }
 
   _takePicture() {
@@ -55,12 +63,11 @@ export default class CameraTab extends Component {
 
         body.append('image', image);
 
-        RNFetchBlob.fetch('POST', 'http://www.snapdoc.io/files', {
+        RNFetchBlob.fetch('POST', 'http://192.168.1.6:3000/files', {
           'Accept': 'application/json',
           'Content-Type': 'application/octet-stream'
         }, [image])
         .then((response) => {
-          console.log(response);
           return response.json()
         })
         .then((data) => {

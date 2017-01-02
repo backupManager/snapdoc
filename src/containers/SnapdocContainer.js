@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onNewTabSelected: (tab) => {
+    setSelectedTab: (tab) => {
       dispatch(setSelectedTab(tab))
     },
     onTakePicture: (captureInProgress) => {

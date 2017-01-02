@@ -22,7 +22,7 @@ export default class Snapdoc extends Component {
           iconName="ios-folder"
           selected={this.props.selectedTab === "filesTab"}
           onPress={() => {
-            this.props.onNewTabSelected("filesTab")
+            this.props.setSelectedTab("filesTab")
           }}>
           <FilesTab></FilesTab>
         </Icon.TabBarItemIOS>
@@ -31,7 +31,7 @@ export default class Snapdoc extends Component {
           iconName="ios-camera"
           selected={this.props.selectedTab === "cameraTab"}
           onPress={() => {
-            this.props.onNewTabSelected("cameraTab")
+            this.props.setSelectedTab("cameraTab")
           }}>
           <CameraTab
             captureInProgress={this.props.captureInProgress}
@@ -43,7 +43,7 @@ export default class Snapdoc extends Component {
           iconName="ios-settings"
           selected={this.props.selectedTab === 'settingsTab'}
           onPress={() => {
-            this.props.onNewTabSelected("settingsTab")
+            this.props.setSelectedTab("settingsTab")
           }}>
           <SettingsTab></SettingsTab>
         </Icon.TabBarItemIOS>
