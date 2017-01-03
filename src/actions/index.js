@@ -12,6 +12,27 @@ export const toggleDocumentModal = (modalVisible) => {
   };
 };
 
+export const setFileCategory = (fileCategory) => {
+  return {
+    type: 'SET_FILE_CATEGORY',
+    fileCategory
+  };
+};
+
+export const setFileName = (fileName) => {
+  return {
+    type: 'SET_FILE_NAME',
+    fileName
+  };
+};
+
+export const setFilePath = (filePath) => {
+  return {
+    type: 'SET_FILE_PATH',
+    filePath
+  };
+};
+
 export const setSelectedTab = (tab) => {
   return {
     type: 'SET_SELECTED_TAB',

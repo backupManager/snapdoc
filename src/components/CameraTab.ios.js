@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Camera from 'react-native-camera';
 import DocumentModal from './DocumentModal';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import RNFetchBlob from 'react-native-fetch-blob';
 import Spinner from 'react-native-spinkit';
 
@@ -17,7 +17,12 @@ export default class CameraTab extends Component {
       <View style={styles.container}>
         <DocumentModal
           modalVisible={this.props.modalVisible}
-          setModalVisible={this.props.setModalVisible}>
+          onSave={this._saveDocument.bind(this)}
+          setFileName={this.props.setFileName}
+          fileName={this.props.fileName}
+          fileCategory={this.props.fileCategory}
+          setFileCategory={this.props.setFileCategory}
+          setFileName={this.props.setFileName}>
         </DocumentModal>
           <Camera
             ref={(cam) => {
@@ -46,43 +51,47 @@ export default class CameraTab extends Component {
             underlayColor={'transparent'}
             style={styles.cameraButton}
             onPress={() => { this._takePicture() }}>
-            <Icon name="ios-qr-scanner" size={55} color="#95a5a6" />
+            <Icon name="circle-thin" size={55} color="#95a5a6" />
         </TouchableHighlight>
       );
     }
+  }
+
+  _saveDocument() {
+    var image = {
+      name: 'image',
+      type: 'image/jpeg',
+      filename: this.props.fileName,
+      data: RNFetchBlob.wrap(this.props.filePath)
+    };
+
+    var body = new FormData();
+
+    body.append('image', image);
+
+    RNFetchBlob.fetch('POST', 'http://192.168.1.6:3000/files', {
+      'Accept': 'application/json',
+      'Content-Type': 'application/octet-stream'
+    }, [image])
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      console.log(data);
+      this.props.setModalVisible(false);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
   _takePicture() {
     this.props.onTakePicture(true);
     this._camera.capture()
       .then((data) => {
-        var image = {
-          name: 'image',
-          type: 'image/jpeg',
-          filename: 'document.jpg',
-          data: RNFetchBlob.wrap(data.path)
-        };
-
-        var body = new FormData();
-
-        body.append('image', image);
-
-        RNFetchBlob.fetch('POST', 'http://192.168.1.6:3000/files', {
-          'Accept': 'application/json',
-          'Content-Type': 'application/octet-stream'
-        }, [image])
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          console.log(data);
-          this.props.onTakePicture(false);
-          this.props.setModalVisible(true);
-        })
-        .catch((error) => {
-          console.error(error);
-          this.props.onTakePicture(false);
-        });
+        this.props.setFilePath(data.path);
+        this.props.onTakePicture(false);
+        this.props.setModalVisible(true);
       })
       .catch((err) => {
         console.error(err)

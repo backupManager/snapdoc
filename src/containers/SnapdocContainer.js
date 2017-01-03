@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
 import {
+  setFileCategory,
+  setFileName,
+  setFilePath,
   setSelectedTab,
   toggleCameraAnimation,
   toggleDocumentModal
@@ -9,13 +12,25 @@ import Snapdoc from '../components/Snapdoc.ios';
 const mapStateToProps = (state) => {
   return {
     captureInProgress: state.cameraReducer.captureInProgress,
-    modalVisible: state.cameraReducer.modalVisible,
+    fileName: state.documentReducer.fileName,
+    fileCategory: state.documentReducer.fileCategory,
+    modalVisible: state.documentReducer.modalVisible,
+    filePath: state.documentReducer.filePath,
     selectedTab: state.tabBarReducer.selectedTab
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    setFileCategory: (fileCategory) => {
+      dispatch(setFileCategory(fileCategory));
+    },
+    setFileName: (fileName) => {
+      dispatch(setFileName(fileName));
+    },
+    setFilePath: (filePath) => {
+      dispatch(setFilePath(filePath));
+    },
     setSelectedTab: (tab) => {
       dispatch(setSelectedTab(tab))
     },

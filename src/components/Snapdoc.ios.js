@@ -37,7 +37,13 @@ export default class Snapdoc extends Component {
             captureInProgress={this.props.captureInProgress}
             onTakePicture={this.props.onTakePicture}
             setModalVisible={this.props.setModalVisible}
-            modalVisible={this.props.modalVisible}>
+            modalVisible={this.props.modalVisible}
+            filePath={this.props.filePath}
+            fileName={this.props.fileName}
+            fileCategory={this.props.fileCategory}
+            setFilePath={this.props.setFilePath}
+            setFileName={this.props.setFileName}
+            setFileCategory={this.props.setFileCategory}>
           </CameraTab>
         </Icon.TabBarItemIOS>
         <Icon.TabBarItemIOS
